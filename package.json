@@ -1,0 +1,23 @@
+{
+  "name": "ssh-manager",
+  "version": "1.0.0",
+  "description": "ssh-manager",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skevprog/ssh-manager.git"
+  },
+  "author": "skevprog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skevprog/ssh-manager/issues"
+  },
+  "homepage": "https://github.com/skevprog/ssh-manager#readme",
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}
