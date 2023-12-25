@@ -1,30 +1,33 @@
-const { app, BrowserWindow, ipcMain,dialog } = require('electron')
+require('dotenv').config();
+
+const { app, BrowserWindow } = require('electron')
 
 const path = require('node:path')
 
-let mainWindow;
-
 const createWindow = () => {
-  const win = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      enableRemoteModule: true
     }
   })
 
-  win.loadFile('index.html')
+  mainWindow.loadFile('index.html')
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow() 
 
-ipcMain.on('show-dialog', () => {
-  dialog.showMessageBox(mainWindow, {
-      type: 'info',
-      title: 'Information',
-      message: 'This is an informational dialog',
-      buttons: ['OK']
-  });
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  })
+
+  app.on('window-all-closed', function () {
+    if (process.platform !== 'darwin') app.quit();
 });
+})
+

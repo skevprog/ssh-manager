@@ -23,3 +23,6 @@ yarn-error.log
 
 # Ignore Electron build artifacts
 electron-builder-debug.yml
+
+# Ignore .env file
+.env
